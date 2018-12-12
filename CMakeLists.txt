@@ -13,9 +13,10 @@ include(ExternalProject)
 file(MAKE_DIRECTORY ${CATKIN_DEVEL_PREFIX}/include)
 
 ExternalProject_Add(orb_slam_2_src
-  GIT_REPOSITORY git@github.com:raulmur/ORB_SLAM2.git
+  GIT_REPOSITORY https://github.com/kandithws/LearnVIORB/
+  GIT_TAG origin/develop
   UPDATE_COMMAND ""
-  PATCH_COMMAND patch -p1 < ${CMAKE_SOURCE_DIR}/fix_usleep.patch
+  # PATCH_COMMAND patch -p1 < ${CMAKE_SOURCE_DIR}/fix_usleep.patch
   CONFIGURE_COMMAND
       # Configuring DBoW2
       mkdir -p ../orb_slam_2_src/Thirdparty/DBoW2/build && 
@@ -27,7 +28,7 @@ ExternalProject_Add(orb_slam_2_src
       cmake .. -DCMAKE_BUILD_TYPE=Release &&
       # Uncompressing the vocabulary
       cd ../../../Vocabulary &&
-      tar -xf ../../orb_slam_2_src/Vocabulary/ORBvoc.txt.tar.gz &&
+      #tar -xf ../../orb_slam_2_src/Vocabulary/ORBvoc.txt.tar.gz &&
       # Configuring the orb slam 2 build
       mkdir -p ../build &&
       cd ../build &&
